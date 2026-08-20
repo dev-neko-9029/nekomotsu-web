@@ -1,0 +1,15 @@
+services:
+  nekomotsu-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nekomotsu-web
+    restart: unless-stopped
+    expose:
+      - "8080"
+    networks:
+      - dokploy-network
+
+networks:
+  dokploy-network:
+    external: true

@@ -1,0 +1,2214 @@
+---
+// src/pages/index.astro
+
+const phoneNumber = "573147055647";
+
+const waMessage = encodeURIComponent(
+  "Hola Gustavo, vi nekomotsu.com y me gustaría hablar contigo sobre un proyecto."
+);
+
+const githubUrl = "https://github.com/dev-neko-9029";
+const siteUrl = "https://nekomotsu.com/";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Gustavo Andrés Olmedo Román",
+  url: siteUrl,
+  jobTitle: "Ingeniero de Sistemas · Full Stack Developer · DevOps",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Montería",
+    addressRegion: "Córdoba",
+    addressCountry: "CO",
+  },
+  sameAs: [githubUrl],
+};
+---
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Gustavo Andrés Olmedo — Full Stack & DevOps</title>
+
+  <meta
+    name="description"
+    content="Ingeniero de Sistemas, Full Stack Developer y DevOps con más de 6 años construyendo software, automatización e infraestructura cloud."
+  />
+
+  <meta name="theme-color" content="#0b0d12" />
+
+  <link rel="canonical" href={siteUrl} />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={siteUrl} />
+  <meta
+    property="og:title"
+    content="Gustavo Andrés Olmedo — Full Stack & DevOps"
+  />
+  <meta
+    property="og:description"
+    content="Software, cloud y automatización con calma, foco y criterio técnico."
+  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <script
+    type="application/ld+json"
+    set:html={JSON.stringify(structuredData)}
+  />
+
+  <style>
+    :root {
+      --bg: #0b0d12;
+      --surface: #121722;
+      --surface-soft: rgba(18, 23, 34, 0.78);
+      --border: #222a3b;
+
+      --text: #e8edf5;
+      --muted: #8d98aa;
+      --muted-dark: #606b7d;
+
+      --accent: #ff7b72;
+      --accent-soft: rgba(255, 123, 114, 0.12);
+
+      --green: #54c778;
+
+      --radius: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+
+      background:
+        radial-gradient(
+          circle at 10% 0%,
+          rgba(255, 123, 114, 0.08),
+          transparent 28rem
+        ),
+        radial-gradient(
+          circle at 90% 20%,
+          rgba(100, 140, 255, 0.05),
+          transparent 25rem
+        ),
+        var(--bg);
+
+      color: var(--text);
+
+      font-family: "Plus Jakarta Sans", sans-serif;
+      line-height: 1.6;
+
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+
+      position: fixed;
+      inset: 0;
+
+      pointer-events: none;
+
+      opacity: 0.15;
+
+      background-image:
+        linear-gradient(
+          rgba(255,255,255,.02) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,.02) 1px,
+          transparent 1px
+        );
+
+      background-size: 42px 42px;
+
+      mask-image:
+        linear-gradient(
+          to bottom,
+          black,
+          transparent 80%
+        );
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .shell {
+      width: min(1100px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    /* HEADER */
+
+    .header-container {
+      position: sticky;
+      top: 16px;
+      z-index: 50;
+
+      padding-top: 16px;
+    }
+
+    header {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+
+      align-items: center;
+      gap: 20px;
+
+      min-height: 62px;
+
+      padding: 10px 12px 10px 18px;
+
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 999px;
+
+      background: rgba(13, 17, 24, 0.8);
+
+      backdrop-filter: blur(18px);
+
+      box-shadow:
+        0 14px 50px rgba(0,0,0,.22);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+
+      gap: 9px;
+
+      width: fit-content;
+
+      color: var(--text);
+
+      text-decoration: none;
+
+      font-family: "JetBrains Mono", monospace;
+      font-size: .8rem;
+      font-weight: 600;
+    }
+
+    .brand-cat {
+      width: 32px;
+      height: 32px;
+
+      display: grid;
+      place-items: center;
+
+      border: 1px solid var(--border);
+      border-radius: 10px;
+
+      color: var(--accent);
+
+      background: var(--surface);
+    }
+
+    .brand-cat svg {
+      width: 19px;
+    }
+
+    /* POMODORO */
+
+    .pomodoro {
+      display: flex;
+      align-items: center;
+
+      gap: 9px;
+
+      font-family: "JetBrains Mono", monospace;
+    }
+
+    .timer-state {
+      display: flex;
+      align-items: center;
+
+      gap: 6px;
+
+      padding: 5px 9px;
+
+      border-radius: 999px;
+
+      background: var(--accent-soft);
+      color: var(--accent);
+
+      font-size: .64rem;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+    }
+
+    .timer-dot {
+      width: 6px;
+      height: 6px;
+
+      border-radius: 50%;
+
+      background: currentColor;
+
+      box-shadow:
+        0 0 10px currentColor;
+
+      animation: pulse 2s infinite;
+    }
+
+    #timer {
+      min-width: 53px;
+
+      font-size: .88rem;
+      font-weight: 600;
+
+      font-variant-numeric: tabular-nums;
+    }
+
+    .timer-button {
+      width: 29px;
+      height: 29px;
+
+      display: grid;
+      place-items: center;
+
+      background: transparent;
+
+      border: 1px solid transparent;
+      border-radius: 8px;
+
+      color: var(--muted);
+
+      cursor: pointer;
+    }
+
+    .timer-button:hover {
+      border-color: var(--border);
+
+      color: white;
+
+      background: var(--surface);
+    }
+
+    .timer-button svg {
+      width: 14px;
+    }
+
+    /* HEADER ACTIONS */
+
+    .header-actions {
+      justify-self: end;
+
+      display: flex;
+      align-items: center;
+
+      gap: 8px;
+    }
+
+    .header-button {
+      min-height: 38px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      gap: 7px;
+
+      padding: 0 13px;
+
+      border: 1px solid var(--border);
+      border-radius: 999px;
+
+      color: var(--muted);
+
+      background: var(--surface);
+
+      font: inherit;
+      font-size: .75rem;
+      font-weight: 600;
+
+      text-decoration: none;
+
+      cursor: pointer;
+
+      transition: .18s;
+    }
+
+    .header-button:hover {
+      color: var(--text);
+
+      transform: translateY(-1px);
+
+      border-color: #39435a;
+    }
+
+    #audio-btn[data-playing="true"] {
+      color: var(--green);
+
+      border-color:
+        rgba(84, 199, 120, 0.25);
+
+      background:
+        rgba(84, 199, 120, 0.08);
+    }
+
+    /* HERO */
+
+    main {
+      padding: 95px 0 100px;
+    }
+
+    .hero {
+      min-height: 570px;
+
+      display: grid;
+
+      grid-template-columns:
+        minmax(0, 1.45fr)
+        minmax(300px, .7fr);
+
+      align-items: center;
+
+      gap: 55px;
+    }
+
+    .eyebrow {
+      display: flex;
+      align-items: center;
+
+      gap: 9px;
+
+      margin-bottom: 22px;
+
+      color: var(--muted);
+
+      font-family: "JetBrains Mono", monospace;
+
+      font-size: .73rem;
+    }
+
+    .online-dot {
+      width: 8px;
+      height: 8px;
+
+      border-radius: 50%;
+
+      background: var(--green);
+
+      box-shadow:
+        0 0 12px
+        rgba(84,199,120,.7);
+    }
+
+    h1 {
+      max-width: 750px;
+
+      font-size:
+        clamp(3.2rem, 7vw, 5.7rem);
+
+      line-height: .98;
+
+      letter-spacing: -.06em;
+
+      font-weight: 700;
+    }
+
+    .muted-title {
+      color: #778294;
+    }
+
+    .hero-copy {
+      max-width: 670px;
+
+      margin-top: 28px;
+
+      color: #a5afbd;
+
+      font-size:
+        clamp(1rem, 1.5vw, 1.13rem);
+
+      line-height: 1.85;
+    }
+
+    .hero-copy strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .hero-actions {
+      margin-top: 30px;
+
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 10px;
+    }
+
+    .primary-button,
+    .secondary-button {
+      min-height: 47px;
+
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 0 18px;
+
+      border-radius: 12px;
+
+      text-decoration: none;
+
+      font-size: .86rem;
+      font-weight: 700;
+
+      transition: .18s;
+    }
+
+    .primary-button {
+      color: #0b0d12;
+
+      background: var(--text);
+
+      border:
+        1px solid var(--text);
+    }
+
+    .secondary-button {
+      color: var(--text);
+
+      background: var(--surface-soft);
+
+      border:
+        1px solid var(--border);
+    }
+
+    .primary-button:hover,
+    .secondary-button:hover {
+      transform: translateY(-2px);
+    }
+
+    .hero-meta {
+      margin-top: 32px;
+
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 8px 20px;
+
+      color: var(--muted-dark);
+
+      font-family:
+        "JetBrains Mono", monospace;
+
+      font-size: .7rem;
+    }
+
+    /* CAT */
+
+    .cat-card {
+      border:
+        1px solid rgba(255,255,255,.07);
+
+      border-radius: 28px;
+
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255,255,255,.025),
+          transparent
+        ),
+        rgba(17,21,30,.87);
+
+      box-shadow:
+        0 30px 80px
+        rgba(0,0,0,.25);
+    }
+
+    .cat-window {
+      display: flex;
+
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 17px 19px;
+
+      border-bottom:
+        1px solid rgba(255,255,255,.06);
+
+      color: var(--muted-dark);
+
+      font-family:
+        "JetBrains Mono", monospace;
+
+      font-size: .67rem;
+    }
+
+    .window-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .window-dots span {
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: #303848;
+    }
+
+    .cat-stage {
+      min-height: 290px;
+
+      display: grid;
+      place-items: center;
+    }
+
+    .cat {
+      width: 230px;
+
+      color: #dae2ec;
+
+      filter:
+        drop-shadow(
+          0 25px 30px
+          rgba(0,0,0,.2)
+        );
+    }
+
+    .headphones {
+      color: var(--accent);
+    }
+
+    .cat-eye {
+      transform-origin: center;
+
+      animation: blink 7s infinite;
+    }
+
+    .playing {
+      margin: 0 18px 18px;
+
+      padding: 14px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 15px;
+
+      border:
+        1px solid rgba(255,255,255,.06);
+
+      border-radius: 14px;
+
+      background:
+        rgba(8,10,15,.4);
+    }
+
+    .playing small {
+      display: block;
+
+      color: var(--muted-dark);
+
+      font-family:
+        "JetBrains Mono", monospace;
+
+      font-size: .6rem;
+
+      text-transform: uppercase;
+    }
+
+    .playing strong {
+      font-size: .77rem;
+    }
+
+    /* SECTIONS */
+
+    .section {
+      padding-top: 95px;
+    }
+
+    .section-header {
+      display: grid;
+
+      grid-template-columns:
+        .65fr 1.35fr;
+
+      gap: 40px;
+
+      margin-bottom: 34px;
+    }
+
+    .section-label {
+      color: var(--muted-dark);
+
+      font-family:
+        "JetBrains Mono", monospace;
+
+      font-size: .69rem;
+
+      letter-spacing: .08em;
+
+      text-transform: uppercase;
+    }
+
+    .section-header h2 {
+      max-width: 700px;
+
+      font-size:
+        clamp(1.8rem, 3vw, 2.5rem);
+
+      line-height: 1.25;
+
+      letter-spacing: -.035em;
+    }
+
+    .section-header p {
+      max-width: 670px;
+
+      margin-top: 12px;
+
+      color: var(--muted);
+
+      font-size: .9rem;
+    }
+
+    /* SERVICES */
+
+    .services {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 14px;
+    }
+
+    .service {
+      min-height: 250px;
+
+      padding: 23px;
+
+      border:
+        1px solid rgba(255,255,255,.07);
+
+      border-radius: var(--radius);
+
+      background: var(--surface-soft);
+
+      transition: .18s;
+    }
+
+    .service:hover {
+      transform: translateY(-3px);
+
+      border-color:
+        rgba(255,123,114,.25);
+    }
+
+    .number {
+      color: #4a5465;
+
+      font-family:
+        "JetBrains Mono", monospace;
+
+      font-size: .65rem;
+    }
+
+    .service h3 {
+      margin-top: 44px;
+
+      font-size: 1rem;
+    }
+
+    .service p {
+      margin-top: 9px;
+
+      color: var(--muted);
+
+      font-size: .82rem;
+
+      line-height: 1.7;
+    }
+
+    .tags {
+      margin-top: 17px;
+
+      display: flex;
+      flex-wrap: wrap;
+
+      gap: 6px;
+    }
+
+    .tag {
+      padding: 4px 7px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.06);
+
+      border-radius: 6px;
+
+      color: #8c97a8;
+
+      font-family:
+        "JetBrains Mono", monospace;
+
+      font-size: .6rem;
+    }
+
+    /* EXPERIENCE */
+
+    .experience {
+      border-top:
+        1px solid
+        rgba(255,255,255,.07);
+    }
+
+    .job {
+      display: grid;
+
+      grid-template-columns:
+        .6fr 1.4fr;
+
+      gap: 35px;
+
+      padding: 27px 3px;
+
+      border-bottom:
+        1px solid
+        rgba(255,255,255,.07);
+    }
+
+    .company {
+      font-size: .88rem;
+      font-weight: 700;
+    }
+
+    .city {
+      margin-top: 5px;
+
+      display: block;
+
+      color: var(--muted-dark);
+
+      font-family:
+        "JetBrains Mono", monospace;
+
+      font-size: .63rem;
+    }
+
+    .role {
+      font-size: .86rem;
+      font-weight: 600;
+    }
+
+    .job p {
+      max-width: 700px;
+
+      margin-top: 7px;
+
+      color: var(--muted);
+
+      font-size: .81rem;
+
+      line-height: 1.75;
+    }
+
+    /* PRINCIPLES */
+
+    .principles {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 14px;
+    }
+
+    .principle {
+      padding: 22px;
+
+      border-left:
+        1px solid var(--border);
+    }
+
+    .principle strong {
+      display: block;
+      margin-bottom: 8px;
+
+      font-size: .87rem;
+    }
+
+    .principle p {
+      color: var(--muted);
+
+      font-size: .79rem;
+    }
+
+    /* CONTACT */
+
+    .contact {
+      margin-top: 100px;
+
+      padding: 36px;
+
+      display: grid;
+
+      grid-template-columns:
+        1.4fr .6fr;
+
+      align-items: end;
+
+      gap: 25px;
+
+      border:
+        1px solid rgba(255,255,255,.07);
+
+      border-radius: 24px;
+
+      background:
+        radial-gradient(
+          circle at 90% 10%,
+          rgba(255,123,114,.08),
+          transparent 20rem
+        ),
+        var(--surface-soft);
+    }
+
+    .contact h2 {
+      margin-top: 14px;
+
+      max-width: 650px;
+
+      font-size:
+        clamp(2rem, 4vw, 3.3rem);
+
+      line-height: 1.15;
+
+      letter-spacing: -.045em;
+    }
+
+    .contact p {
+      max-width: 600px;
+
+      margin-top: 15px;
+
+      color: var(--muted);
+
+      font-size: .86rem;
+    }
+
+    .contact-action {
+      justify-self: end;
+    }
+
+    footer {
+      padding: 30px 0 40px;
+
+      display: flex;
+
+      justify-content: space-between;
+
+      gap: 20px;
+
+      color: var(--muted-dark);
+
+      font-family:
+        "JetBrains Mono", monospace;
+
+      font-size: .65rem;
+    }
+
+    footer a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    @keyframes pulse {
+      50% {
+        opacity: .3;
+      }
+    }
+
+    @keyframes blink {
+      0%, 46%, 49%, 100% {
+        transform: scaleY(1);
+      }
+
+      47%, 48% {
+        transform: scaleY(.08);
+      }
+    }
+
+    @media (max-width: 900px) {
+      header {
+        grid-template-columns: auto 1fr;
+
+        border-radius: 20px;
+      }
+
+      .pomodoro {
+        grid-column: 1 / -1;
+
+        order: 3;
+
+        justify-content: center;
+
+        padding-top: 8px;
+
+        border-top:
+          1px solid
+          rgba(255,255,255,.06);
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .cat-card {
+        width: min(100%, 450px);
+
+        justify-self: center;
+      }
+
+      .section-header,
+      .job,
+      .contact {
+        grid-template-columns: 1fr;
+      }
+
+      .services {
+        grid-template-columns: 1fr;
+      }
+
+      .service {
+        min-height: auto;
+      }
+
+      .service h3 {
+        margin-top: 28px;
+      }
+
+      .contact-action {
+        justify-self: start;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .shell {
+        width: calc(100% - 24px);
+      }
+
+      .brand-name,
+      .button-label {
+        display: none;
+      }
+
+      .header-button {
+        width: 38px;
+        padding: 0;
+      }
+
+      main {
+        padding-top: 65px;
+      }
+
+      h1 {
+        font-size:
+          clamp(3rem, 16vw, 4.3rem);
+      }
+
+      .hero-actions {
+        display: grid;
+      }
+
+      .primary-button,
+      .secondary-button {
+        width: 100%;
+      }
+
+      .section {
+        padding-top: 75px;
+      }
+
+      .section-header {
+        gap: 17px;
+      }
+
+      .principles {
+        grid-template-columns: 1fr;
+      }
+
+      .principle {
+        border-left: none;
+
+        border-top:
+          1px solid var(--border);
+
+        padding-left: 0;
+      }
+
+      .contact {
+        padding: 25px 21px;
+      }
+
+      footer {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="header-container shell">
+  <header>
+
+    <a href="#top" class="brand">
+
+      <span class="brand-cat">
+
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"
+        >
+          <path
+            d="M5 9 4 5l4 2c1-.6 2.5-1 4-1s3 .4 4 1l4-2-1 4c1 1.5 2 3 2 5 0 4-4 7-9 7s-9-3-9-7c0-2 .7-3.6 2-5Z"
+          />
+          <path d="M9 13h.01M15 13h.01" />
+          <path d="M10 16c1.2.8 2.8.8 4 0" />
+        </svg>
+
+      </span>
+
+      <span class="brand-name">
+        nekomotsu
+      </span>
+
+    </a>
+
+
+    <div class="pomodoro">
+
+      <span class="timer-state">
+        <span class="timer-dot"></span>
+        <span id="mode">focus</span>
+      </span>
+
+      <span id="timer">
+        25:00
+      </span>
+
+      <button
+        id="timer-toggle"
+        class="timer-button"
+        aria-label="Pausar Pomodoro"
+      >
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            id="timer-icon"
+            d="M9 5v14M15 5v14"
+          />
+        </svg>
+      </button>
+
+      <button
+        id="timer-reset"
+        class="timer-button"
+        aria-label="Reiniciar Pomodoro"
+      >
+        ↺
+      </button>
+
+    </div>
+
+
+    <div class="header-actions">
+
+      <button
+        id="audio-btn"
+        class="header-button"
+        data-playing="false"
+      >
+        ♫
+
+        <span
+          id="audio-label"
+          class="button-label"
+        >
+          Lo-fi
+        </span>
+
+      </button>
+
+      <a
+        href={githubUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="header-button"
+      >
+        GitHub
+      </a>
+
+    </div>
+
+  </header>
+</div>
+
+
+<main
+  id="top"
+  class="shell"
+>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div>
+
+      <div class="eyebrow">
+
+        <span class="online-dot"></span>
+
+        Full Stack · DevOps · Montería, Colombia
+
+      </div>
+
+
+      <h1>
+
+        Gustavo Olmedo.
+
+        <br />
+
+        <span class="muted-title">
+          Software sin ruido.
+        </span>
+
+      </h1>
+
+
+      <p class="hero-copy">
+
+        Soy
+
+        <strong>
+          {" "}Ingeniero de Sistemas{" "}
+        </strong>
+
+        y llevo más de
+
+        <strong>
+          {" "}6 años{" "}
+        </strong>
+
+        construyendo aplicaciones,
+        automatizando entregas y
+        manteniendo infraestructura cloud.
+
+        Trabajo entre
+
+        <strong>
+          {" "}producto, código y plataforma:{" "}
+        </strong>
+
+        desde una API o una aplicación
+        móvil hasta Terraform, CI/CD,
+        observabilidad y plataformas
+        internas para desarrolladores.
+
+      </p>
+
+
+      <div class="hero-actions">
+
+        <a
+          class="primary-button"
+          href={`https://wa.me/${phoneNumber}?text=${waMessage}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Hablemos de tu proyecto →
+        </a>
+
+        <a
+          class="secondary-button"
+          href="#experiencia"
+        >
+          Ver experiencia
+        </a>
+
+      </div>
+
+
+      <div class="hero-meta">
+
+        <span>
+          6+ años construyendo software
+        </span>
+
+        <span>
+          AWS · GCP
+        </span>
+
+        <span>
+          Español · Inglés
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- NEKOMOTSU -->
+
+    <aside class="cat-card">
+
+      <div class="cat-window">
+
+        <div class="window-dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        ~/focus-room
+
+      </div>
+
+
+      <div class="cat-stage">
+
+        <svg
+          class="cat"
+          viewBox="0 0 260 240"
+          fill="none"
+        >
+
+          <!-- HEAD -->
+
+          <path
+            d="
+            M75 83
+            58 47
+            101 68
+            C110 63 120 60 131 60
+            C143 60 154 63 163 68
+            L204 47
+            189 84
+            C204 101 211 120 211 142
+            C211 190 175 224 131 224
+            C86 224 49 190 49 142
+            C49 120 58 99 75 83Z
+            "
+            stroke="currentColor"
+            stroke-width="6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+
+
+          <!-- HEADPHONES -->
+
+          <path
+            class="headphones"
+            d="
+            M61 112
+            C68 70 92 47 131 47
+            C169 47 193 70 199 112
+            "
+            stroke="currentColor"
+            stroke-width="6"
+            stroke-linecap="round"
+          />
+
+          <path
+            class="headphones"
+            d="M62 114v51"
+            stroke="currentColor"
+            stroke-width="10"
+            stroke-linecap="round"
+          />
+
+          <path
+            class="headphones"
+            d="M198 114v51"
+            stroke="currentColor"
+            stroke-width="10"
+            stroke-linecap="round"
+          />
+
+
+          <!-- EYES -->
+
+          <g class="cat-eye">
+
+            <path
+              d="M92 132h1"
+              stroke="currentColor"
+              stroke-width="8"
+              stroke-linecap="round"
+            />
+
+            <path
+              d="M168 132h1"
+              stroke="currentColor"
+              stroke-width="8"
+              stroke-linecap="round"
+            />
+
+          </g>
+
+
+          <!-- FACE -->
+
+          <path
+            d="M121 148c6 5 12 5 18 0"
+            stroke="currentColor"
+            stroke-width="5"
+            stroke-linecap="round"
+          />
+
+          <path
+            d="M130 151v7"
+            stroke="currentColor"
+            stroke-width="4"
+          />
+
+          <path
+            d="M111 166c11 8 27 8 38 0"
+            stroke="currentColor"
+            stroke-width="4"
+            stroke-linecap="round"
+          />
+
+
+          <!-- WHISKERS -->
+
+          <path
+            d="
+            M81 151 48 145
+            M82 161 51 166
+            M180 151 212 145
+            M178 161 209 166
+            "
+            stroke="currentColor"
+            stroke-width="3"
+            stroke-linecap="round"
+            opacity=".5"
+          />
+
+        </svg>
+
+      </div>
+
+
+      <div class="playing">
+
+        <div>
+
+          <small>
+            now playing
+          </small>
+
+          <strong>
+            deep focus / quiet build
+          </strong>
+
+        </div>
+
+        ♫
+
+      </div>
+
+    </aside>
+
+  </section>
+
+
+
+  <!-- SERVICES -->
+
+  <section
+    class="section"
+    id="servicios"
+  >
+
+    <div class="section-header">
+
+      <span class="section-label">
+        01 / En qué trabajo
+      </span>
+
+      <div>
+
+        <h2>
+          Puedo entrar en una parte del sistema
+          o ayudar a conectar las piezas.
+        </h2>
+
+        <p>
+          Me enfoco en problemas de desarrollo,
+          entrega e infraestructura utilizando
+          tecnologías con las que ya he trabajado
+          en producción.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="services">
+
+      <article class="service">
+
+        <span class="number">
+          01
+        </span>
+
+        <h3>
+          Cloud & Platform
+        </h3>
+
+        <p>
+          Infraestructura reproducible,
+          automatización operativa,
+          observabilidad y plataformas
+          internas para equipos de desarrollo.
+        </p>
+
+        <div class="tags">
+          <span class="tag">Terraform</span>
+          <span class="tag">Pulumi</span>
+          <span class="tag">AWS</span>
+          <span class="tag">GCP</span>
+          <span class="tag">Ansible</span>
+          <span class="tag">Zabbix</span>
+        </div>
+
+      </article>
+
+
+      <article class="service">
+
+        <span class="number">
+          02
+        </span>
+
+        <h3>
+          CI/CD & DevOps
+        </h3>
+
+        <p>
+          Pipelines y procesos para hacer
+          más predecible el camino desde
+          un cambio de código hasta producción.
+        </p>
+
+        <div class="tags">
+          <span class="tag">GitHub Actions</span>
+          <span class="tag">CircleCI</span>
+          <span class="tag">ArgoCD</span>
+          <span class="tag">GitOps</span>
+          <span class="tag">AWX</span>
+        </div>
+
+      </article>
+
+
+      <article class="service">
+
+        <span class="number">
+          03
+        </span>
+
+        <h3>
+          Full Stack & Mobile
+        </h3>
+
+        <p>
+          APIs, aplicaciones web y productos
+          móviles con una base técnica
+          mantenible y preparada para crecer.
+        </p>
+
+        <div class="tags">
+          <span class="tag">Node.js</span>
+          <span class="tag">Python</span>
+          <span class="tag">React</span>
+          <span class="tag">Vue</span>
+          <span class="tag">React Native</span>
+          <span class="tag">Flutter</span>
+        </div>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- EXPERIENCE -->
+
+  <section
+    class="section"
+    id="experiencia"
+  >
+
+    <div class="section-header">
+
+      <span class="section-label">
+        02 / Trayectoria
+      </span>
+
+      <div>
+
+        <h2>
+          Experiencia cruzando
+          desarrollo y operación.
+        </h2>
+
+        <p>
+          He trabajado desde producto y
+          desarrollo end-to-end hasta
+          infraestructura, automatización,
+          observabilidad y plataformas
+          internas de ingeniería.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="experience">
+
+      <article class="job">
+
+        <div>
+
+          <div class="company">
+            Banco Covalto
+          </div>
+
+          <span class="city">
+            México
+          </span>
+
+        </div>
+
+        <div>
+
+          <div class="role">
+            DevOps · IaC · Developer Platform
+          </div>
+
+          <p>
+            Terraform y Pulumi,
+            automatización con AWX/Ansible,
+            monitoreo con Zabbix y desarrollo
+            Full Stack alrededor de Backstage.
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <article class="job">
+
+        <div>
+
+          <div class="company">
+            Servinformación SAS
+          </div>
+
+          <span class="city">
+            Bogotá · Colombia
+          </span>
+
+        </div>
+
+        <div>
+
+          <div class="role">
+            Full Stack · Cloud · Mobile
+          </div>
+
+          <p>
+            Desarrollo con Node.js y Python,
+            pipelines CI/CD, infraestructura
+            AWS/GCP y aplicaciones móviles
+            con React Native y Flutter.
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <article class="job">
+
+        <div>
+
+          <div class="company">
+            Joonik · PNEUMA Consulting
+          </div>
+
+          <span class="city">
+            Colombia
+          </span>
+
+        </div>
+
+        <div>
+
+          <div class="role">
+            Full Stack Developer
+          </div>
+
+          <p>
+            Desarrollo web end-to-end
+            utilizando JavaScript,
+            TypeScript, MEVN,
+            bases de datos y contenedores.
+          </p>
+
+        </div>
+
+      </article>
+
+
+      <article class="job">
+
+        <div>
+
+          <div class="company">
+            Software Estratégico
+          </div>
+
+          <span class="city">
+            Colombia
+          </span>
+
+        </div>
+
+        <div>
+
+          <div class="role">
+            Frontend · Cloud Support
+          </div>
+
+          <p>
+            Interfaces con React y Vue,
+            soporte y monitoreo de soluciones
+            desplegadas sobre AWS.
+          </p>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- WORKING STYLE -->
+
+  <section class="section">
+
+    <div class="section-header">
+
+      <span class="section-label">
+        03 / Cómo trabajo
+      </span>
+
+      <div>
+
+        <h2>
+          Menos ceremonia.
+          Más claridad sobre lo que hay
+          que resolver.
+        </h2>
+
+      </div>
+
+    </div>
+
+
+    <div class="principles">
+
+      <div class="principle">
+
+        <strong>
+          Entender antes de construir.
+        </strong>
+
+        <p>
+          Primero contexto,
+          restricciones y objetivo.
+          Después herramientas.
+        </p>
+
+      </div>
+
+
+      <div class="principle">
+
+        <strong>
+          Automatizar lo que sí duele.
+        </strong>
+
+        <p>
+          Eliminar trabajo repetitivo
+          y procesos frágiles antes
+          de añadir complejidad.
+        </p>
+
+      </div>
+
+
+      <div class="principle">
+
+        <strong>
+          Dejar algo mantenible.
+        </strong>
+
+        <p>
+          No basta con que funcione hoy.
+          Alguien debe poder entenderlo
+          y operarlo mañana.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- CONTACT -->
+
+  <section
+    class="contact"
+    id="contacto"
+  >
+
+    <div>
+
+      <span class="section-label">
+        04 / Contacto
+      </span>
+
+      <h2>
+        ¿Hay algo que construir,
+        ordenar o automatizar?
+      </h2>
+
+      <p>
+        Cuéntame el problema,
+        el estado actual y qué necesitas
+        conseguir. Si puedo aportar,
+        empezamos por ahí.
+      </p>
+
+    </div>
+
+
+    <div class="contact-action">
+
+      <a
+        class="primary-button"
+        href={`https://wa.me/${phoneNumber}?text=${waMessage}`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Escribir por WhatsApp
+      </a>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer class="shell">
+
+  <span>
+    Gustavo Andrés Olmedo Román
+    · Ingeniero de Sistemas
+  </span>
+
+  <span>
+    Montería, Córdoba ·
+    <a
+      href={githubUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      GitHub
+    </a>
+  </span>
+
+</footer>
+
+
+<audio
+  id="lofi-player"
+  loop
+  preload="auto"
+  autoplay
+>
+  <source
+    src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"
+    type="audio/mpeg"
+  />
+</audio>
+
+
+<script>
+  /* ------------------------
+     POMODORO
+  ------------------------ */
+
+  const display =
+    document.getElementById("timer");
+
+  const modeDisplay =
+    document.getElementById("mode");
+
+  const toggle =
+    document.getElementById("timer-toggle");
+
+  const reset =
+    document.getElementById("timer-reset");
+
+  const timerIcon =
+    document.getElementById("timer-icon");
+
+
+  const times = {
+    focus: 25 * 60,
+    break: 5 * 60
+  };
+
+
+  let currentMode = "focus";
+
+  let seconds =
+    times[currentMode];
+
+  let running = true;
+
+
+  function renderTimer() {
+
+    const minutes =
+      Math.floor(seconds / 60);
+
+    const remaining =
+      seconds % 60;
+
+
+    if (display) {
+
+      display.textContent =
+        `${String(minutes).padStart(2, "0")}:${String(remaining).padStart(2, "0")}`;
+
+    }
+
+
+    if (modeDisplay) {
+
+      modeDisplay.textContent =
+        currentMode;
+
+    }
+
+
+    if (timerIcon) {
+
+      timerIcon.setAttribute(
+        "d",
+        running
+          ? "M9 5v14M15 5v14"
+          : "m8 5 11 7-11 7V5Z"
+      );
+
+    }
+
+  }
+
+
+  function changeMode() {
+
+    currentMode =
+      currentMode === "focus"
+        ? "break"
+        : "focus";
+
+    seconds =
+      times[currentMode];
+
+  }
+
+
+  setInterval(() => {
+
+    if (!running) return;
+
+
+    if (seconds > 0) {
+
+      seconds--;
+
+    } else {
+
+      changeMode();
+
+    }
+
+
+    renderTimer();
+
+  }, 1000);
+
+
+  toggle?.addEventListener(
+    "click",
+    () => {
+
+      running = !running;
+
+      renderTimer();
+
+    }
+  );
+
+
+  reset?.addEventListener(
+    "click",
+    () => {
+
+      seconds =
+        times[currentMode];
+
+      running = true;
+
+      renderTimer();
+
+    }
+  );
+
+
+  renderTimer();
+
+
+
+  /* ------------------------
+     LO-FI
+  ------------------------ */
+
+  const audio =
+    document.getElementById(
+      "lofi-player"
+    );
+
+  const audioButton =
+    document.getElementById(
+      "audio-btn"
+    );
+
+  const audioLabel =
+    document.getElementById(
+      "audio-label"
+    );
+
+
+  if (
+    audio instanceof HTMLAudioElement
+  ) {
+
+    audio.volume = 0.16;
+
+
+    function updateAudioUI(
+      playing,
+      blocked = false
+    ) {
+
+      if (audioButton) {
+
+        audioButton.dataset.playing =
+          playing
+            ? "true"
+            : "false";
+
+      }
+
+
+      if (audioLabel) {
+
+        audioLabel.textContent =
+          playing
+            ? "Lo-fi on"
+            : blocked
+              ? "Activar"
+              : "Lo-fi off";
+
+      }
+
+    }
+
+
+    async function startAudio() {
+
+      try {
+
+        await audio.play();
+
+        updateAudioUI(true);
+
+        return true;
+
+      } catch {
+
+        /*
+         * Chrome/Safari pueden bloquear
+         * autoplay con sonido.
+         */
+
+        updateAudioUI(
+          false,
+          true
+        );
+
+        return false;
+
+      }
+
+    }
+
+
+    startAudio();
+
+
+    /*
+     * Si autoplay fue bloqueado,
+     * arrancamos en la primera
+     * interacción real.
+     */
+
+    document.addEventListener(
+      "pointerdown",
+      async (event) => {
+
+        if (!audio.paused) return;
+
+
+        const target =
+          event.target;
+
+
+        /*
+         * El botón tiene su propia lógica.
+         * Evitamos arrancar + pausar
+         * en el mismo click.
+         */
+
+        if (
+          target instanceof Element &&
+          target.closest("#audio-btn")
+        ) {
+          return;
+        }
+
+
+        await startAudio();
+
+      },
+      {
+        once: true
+      }
+    );
+
+
+    audioButton?.addEventListener(
+      "click",
+      async () => {
+
+        if (audio.paused) {
+
+          await startAudio();
+
+        } else {
+
+          audio.pause();
+
+          updateAudioUI(false);
+
+        }
+
+      }
+    );
+
+
+    audio.addEventListener(
+      "play",
+      () =>
+        updateAudioUI(true)
+    );
+
+
+    audio.addEventListener(
+      "pause",
+      () =>
+        updateAudioUI(false)
+    );
+
+  }
+</script>
+
+</body>
+</html>
